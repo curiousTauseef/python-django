@@ -1,0 +1,32 @@
+{% extends "base_bugs.html" %}
+
+# Display a list of applications
+# requires a variable 'objects_list' of type query_set
+
+
+
+{% block content %}
+
+{% if object_list %}
+
+<table border="1">
+	<theader>
+		<th id="name">Application</th>
+		<th id="components__count">Components</th>
+		<th id="description">Description</th>
+	</theader>
+{% for application in object_list %}
+	<tr>
+		<td><a href="/bugs/browse/{{ application.id }}/">{{ application.name }}</a>	 </td>	
+		<td>{{ application.components.count }} </td>
+		<td>{{ application.description }} </td>
+	</tr>
+{% endfor %}
+</table>
+
+{% else %}
+	There's not applications created.
+
+{% endif %}
+
+{% endblock %}		
